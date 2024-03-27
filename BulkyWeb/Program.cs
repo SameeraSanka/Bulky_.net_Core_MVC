@@ -1,7 +1,16 @@
+using BulkyWeb.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options=> options.UseSqlServer(builder.Configuration.GetConnectionString("DefaltConnection")));
+// => this notation says options GOSE TO 
+// UseSqlServer dana eken ApplicationDbContext eke thiyna DbContext eka SQL server eka use kranwa kiyla configer kranne
+// itapasse UseSqlServer eke parameter ekak widihata appsetting eke hadapu connection string eka pass kranwa
+
 
 var app = builder.Build();
 
